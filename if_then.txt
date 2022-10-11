@@ -1,0 +1,34 @@
+Правило: срочно обратитесь ко врачу
+IF "Skol zyba \ plomb" = "no" AND "Videlenie gnoya" = "yes" AND "Temperatura" = ">37" AND "Ostraya bol" = "yes" THEN "Obratites ko vrachy"
+
+IF "Otsytstvyet zyb" = "no" AND "Bespokoit zyb mydrosty" = "no" AND  "Povishenaya hyvstvitelnoct" = "no" AND "Uazva vo rty" = "no" THEN "Osmotr ne trebuetsya"
+
+IF "Bol v chelysty" = "yes" AND "Est karies " = "no" AND "Octraya bol" = "no" OR "Skol zyba \ plomb" = "yes" AND "Uazva vo rty" = "yes"  AND "Krovotochit desna" = "no" AND "Nalet na zybah" = "no" OR "Krovotochit desna" = "yes" AND "Povishenaya hyvstvitelnoct" = "yes" AND "Nalet na zybah" = "yes" AND "Est karies " = "yes" 
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+IF "Skol zyba \ plomb" = "no" AND "Videlenie gnoya" = "yes"  THEN "Nepriyatniy zapah iz rta" = "yes"
+IF "Nepriyatniy zapah iz rta" = "yes" AND "Temperatura" = ">37" OR "Ostraya bol" = "yes" THEN "Svish na desne" = "yes"
+IF "Svish na desne" = "yes" THEN "Obratites ko vrachy"
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+IF "Otsytstvyet zyb" = "no" AND "Bespokoit zyb mydrosty" = "no"  THEN  "Vospalilas desna" = "no" 
+IF  "Povishenaya hyvstvitelnoct" = "no" AND "Uazva vo rty" = "no" THEN "Temperatura" = "<37"
+IF  "Temperatura" = "<37" AND  "Vospalilas desna" = "no" THEN "Svish na desne" = "no"
+IF "Svish na desne" = "no" THEN "Osmotr ne trebuetsya"
+
+IF "Bol v chelysty" = "yes" AND "Est karies " = "no" AND "Octraya bol" = "no" THEN "Bespokoit zyb mydrosty" = "yes" 
+IF"Skol zyba \ plomb" = "yes" AND "Uazva vo rty" = "yes"  AND "Krovotochit desna" = "no" AND "Nalet na zybah" = "no" THEN "Bol v chelysty" = "no"
+IF "Krovotochit desna" = "yes" AND "Povishenaya hyvstvitelnoct" = "yes" THEN "Vospalilas desna" = "yes" 
+IF "Nalet na zybah" = "yes" AND "Est karies " = "yes" THEN "Pokrasnenie slizistoy" = "yes"
+IF "Pokrasnenie slizistoy" = "yes" AND "Vospalilas desna" = "yes" THEN "Zybnoy kamen" = "yes"
+IF "Zybnoy kamen" = "yes" OR "Bespokoit zyb mydrosty" = "yes" OR "Bol v chelysty" = "no" THEN "Zapsshites na planoviy priom"
+
+(defrule Obratites ko vrachy
+	(not (solution ?))
+	(and
+		(Skol zyba \ plomb no)
+		(Videlenie gnoya yes))
+	=>
+	(assert (Nepriyatniy zapah iz rta yes))
+		
